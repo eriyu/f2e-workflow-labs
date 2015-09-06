@@ -20,6 +20,7 @@
   "homepage": "https://github.com/eriyu/f2e-workflow-labs#readme",
   "devDependencies": {
     "bower": "^1.5.2",
+    "del": "^2.0.1",
     "gulp": "^3.9.0",
     "lodash": "^3.10.1"
   }
