@@ -4,6 +4,7 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 
+var config = require("./config"); //載入相同目錄下此名稱的檔案
 
 gulp.task('default',['mytask1'], function() {
 	// place code for your default task here
@@ -62,20 +63,22 @@ gulp.task('clean',function(cb) {
 });
 
 gulp.task('watch', function() {
-    gulp.watch('app/**/*.js', ['concat-app']);
+    gulp.watch(config.appPath + '/**/*.js', ['concat-app']);
 });
 
 gulp.task('concat-app',function() {
-    gulp.src('app/**/*.module.js')
-      .pipe(gulp.dest('src/app/'))
+    gulp.src(config.appPath+'/**/*.module.js')
+      .pipe(gulp.dest('src/app'))
       .pipe(concat('app.modules.js'))
+      .pipe(gulp.dest('assets'))
       .pipe(uglify())
       .pipe(rename({ extname: '.min.js' }))
       .pipe(gulp.dest('assets'));
 
-    gulp.src(['app/**/*.js','!app/**/*.module.js'])
+    gulp.src([config.appPath+'/**/*.js','!' + config.appPath+ +'/**/*.module.js'])
       .pipe(gulp.dest('src/app'))
       .pipe(concat('app.bundles.js'))
+      .pipe(gulp.dest('assets'))
       .pipe(uglify({mangle:false}))
       .pipe(rename({ extname: '.min.js' }))
       .pipe(gulp.dest('assets'));
