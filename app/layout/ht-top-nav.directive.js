@@ -15,7 +15,8 @@
             scope: {
                 'navline': '='
             },
-            templateUrl: 'app/layout/ht-top-nav.html'
+            // templateUrl: 'app/layout/ht-top-nav.html'
+            templateUrl: require('raw!./ht-top-nav.html')
         };
 
         /* @ngInject */
